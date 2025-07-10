@@ -1,0 +1,1681 @@
+                    </div>
+                </section>
+
+                <!-- Equipment Section -->
+                <section class="content-section" id="equipment">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2 class="table-title">
+                                <i class="fas fa-wrench"></i>
+                                Equipment Inventory
+                            </h2>
+                            <button class="btn btn-primary" onclick="addEquipment()">
+                                <i class="fas fa-plus"></i>
+                                Add Equipment
+                            </button>
+                        </div>
+                        <div id="equipmentTable" class="loading">
+                            <div class="spinner"></div>
+                            Loading equipment...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Maintenance Section -->
+                <section class="content-section" id="maintenance">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2 class="table-title">
+                                <i class="fas fa-cogs"></i>
+                                Maintenance Log
+                            </h2>
+                            <button class="btn btn-primary" onclick="logMaintenance()">
+                                <i class="fas fa-plus"></i>
+                                Log Maintenance
+                            </button>
+                        </div>
+                        <div id="maintenanceTable" class="loading">
+                            <div class="spinner"></div>
+                            Loading maintenance records...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAT Testing Section -->
+                <section class="content-section" id="pat-testing">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2 class="table-title">
+                                <i class="fas fa-bolt"></i>
+                                PAT Testing Records
+                            </h2>
+                            <button class="btn btn-primary" onclick="recordPATTest()">
+                                <i class="fas fa-plus"></i>
+                                Record PAT Test
+                            </button>
+                        </div>
+                        <div id="patTable" class="loading">
+                            <div class="spinner"></div>
+                            Loading PAT records...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Alerts Section -->
+                <section class="content-section" id="alerts">
+                    <div id="alertsContent">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Loading alerts...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section class="content-section" id="reports">
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3 style="margin: 1rem 0; color: var(--dark); font-size: 1.25rem;">Monthly Report</h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Generate comprehensive monthly equipment report</p>
+                            <button class="btn btn-primary" onclick="generateMonthlyReport()">
+                                <i class="fas fa-download"></i>
+                                Generate
+                            </button>
+                        </div>
+                        <div class="card">
+                            <div class="stat-icon secondary">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 style="margin: 1rem 0; color: var(--dark); font-size: 1.25rem;">Depreciation Report</h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Calculate current equipment values and depreciation</p>
+                            <button class="btn btn-secondary" onclick="generateDepreciationReport()">
+                                <i class="fas fa-calculator"></i>
+                                Generate
+                            </button>
+                        </div>
+                        <div class="card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h3 style="margin: 1rem 0; color: var(--dark); font-size: 1.25rem;">Service History</h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">View detailed service history for equipment</p>
+                            <button class="btn btn-outline" onclick="viewServiceHistory()">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </div>
+                        <div class="card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h3 style="margin: 1rem 0; color: var(--dark); font-size: 1.25rem;">Export Data</h3>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">Export equipment data to various formats</p>
+                            <button class="btn btn-outline" onclick="exportData()">
+                                <i class="fas fa-file-export"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section class="content-section" id="settings">
+                    <div class="form-container">
+                        <h2 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-cog"></i>
+                            System Settings
+                        </h2>
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-link"></i>
+                                    Google Sheets URL
+                                </label>
+                                <input type="url" class="form-input" id="sheetsUrl" 
+                                       value="https://docs.google.com/spreadsheets/d/1LdjdPqRvjbPyulxqBimsh9QELIVm_S5mgkY6l-XIgfg/edit">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-clock"></i>
+                                        Maintenance Warning (days)
+                                    </label>
+                                    <input type="number" class="form-input" id="maintenanceWarning" value="30">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-bolt"></i>
+                                        PAT Warning (days)
+                                    </label>
+                                    <input type="number" class="form-input" id="patWarning" value="30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Recipients
+                                </label>
+                                <input type="text" class="form-input" id="emailRecipients" 
+                                       value="bqc@fantasticservices.com, antonia.harbalieva@fantasticservices.com">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Settings
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="addEquipmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-plus-circle"></i>
+                    Add New Equipment
+                </h2>
+                <button class="modal-close" onclick="closeModal('addEquipmentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addEquipmentForm">
+                <div class="form-group">
+                    <label class="form-label">Equipment Name *</label>
+                    <input type="text" class="form-input" id="equipmentName" required 
+                           placeholder="Enter equipment name...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Category *</label>
+                        <select class="form-input" id="equipmentCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Vacuum Cleaners">Vacuum Cleaners</option>
+                            <option value="Carpet Cleaners">Carpet Cleaners</option>
+                            <option value="Pressure Washers">Pressure Washers</option>
+                            <option value="Floor Polishers">Floor Polishers</option>
+                            <option value="Window Cleaning">Window Cleaning</option>
+                            <option value="Cleaning Supplies">Cleaning Supplies</option>
+                            <option value="Safety Equipment">Safety Equipment</option>
+                            <option value="Tools">Tools</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Condition *</label>
+                        <select class="form-input" id="equipmentCondition" required>
+                            <option value="">Select Condition</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Poor">Poor</option>
+                            <option value="Requires Repair">Requires Repair</option>
+                            <option value="Out of Service">Out of Service</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Brand/Model</label>
+                        <input type="text" class="form-input" id="equipmentBrand" 
+                               placeholder="e.g. Dyson V15 Detect">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Serial Number</label>
+                        <input type="text" class="form-input" id="equipmentSerial" 
+                               placeholder="Enter serial number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Purchase Date</label>
+                        <input type="date" class="form-input" id="equipmentPurchaseDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Purchase Cost (£)</label>
+                        <input type="number" class="form-input" id="equipmentCost" step="0.01" 
+                               placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Assigned To</label>
+                        <input type="text" class="form-input" id="equipmentAssigned" 
+                               placeholder="Staff member name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Warranty Expiry</label>
+                        <input type="date" class="form-input" id="equipmentWarranty">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Supplier Contact</label>
+                    <input type="text" class="form-input" id="equipmentSupplier" 
+                           placeholder="Supplier name and contact details">
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addEquipmentModal')">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Equipment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="maintenanceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-tools"></i>
+                    Log Maintenance
+                </h2>
+                <button class="modal-close" onclick="closeModal('maintenanceModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="maintenanceForm">
+                <div class="form-group">
+                    <label class="form-label">Equipment *</label>
+                    <select class="form-input" id="maintenanceEquipment" required>
+                        <option value="">Select Equipment</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Service Type *</label>
+                        <select class="form-input" id="maintenanceType" required>
+                            <option value="">Select Type</option>
+                            <option value="Routine Maintenance">Routine Maintenance</option>
+                            <option value="Emergency Repair">Emergency Repair</option>
+                            <option value="Preventive Service">Preventive Service</option>
+                            <option value="Calibration">Calibration</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Parts Replacement">Parts Replacement</option>
+                            <option value="Warranty Service">Warranty Service</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Service Date *</label>
+                        <input type="date" class="form-input" id="maintenanceDate" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Service Provider</label>
+                        <input type="text" class="form-input" id="maintenanceProvider" 
+                               placeholder="Service provider name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cost (£)</label>
+                        <input type="number" class="form-input" id="maintenanceCost" step="0.01" 
+                               placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" id="maintenanceDescription" rows="3" 
+                              placeholder="Describe the maintenance work performed..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Parts Replaced</label>
+                        <input type="text" class="form-input" id="maintenanceParts" 
+                               placeholder="List any parts replaced">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Invoice Reference</label>
+                        <input type="text" class="form-input" id="maintenanceInvoice" 
+                               placeholder="Invoice number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Technician Notes</label>
+                    <textarea class="form-input" id="maintenanceNotes" rows="3" 
+                              placeholder="Additional technician notes..."></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('maintenanceModal')">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Log Maintenance
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="patModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-bolt"></i>
+                    Record PAT Test
+                </h2>
+                <button class="modal-close" onclick="closeModal('patModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="patForm">
+                <div class="form-group">
+                    <label class="form-label">Equipment *</label>
+                    <select class="form-input" id="patEquipment" required>
+                        <option value="">Select Equipment</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Test Date *</label>
+                        <input type="date" class="form-input" id="patDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Test Result *</label>
+                        <select class="form-input" id="patResult" required>
+                            <option value="">Select Result</option>
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                            <option value="Not Applicable">Not Applicable</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tester Name *</label>
+                        <input type="text" class="form-input" id="patTester" required 
+                               placeholder="Qualified tester name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Certificate Reference</label>
+                        <input type="text" class="form-input" id="patCertificate" 
+                               placeholder="Certificate number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Visual Inspection</label>
+                        <select class="form-input" id="patVisual">
+                            <option value="">Select</option>
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Earth Bond Test</label>
+                        <select class="form-input" id="patEarth">
+                            <option value="">Select</option>
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Insulation Test</label>
+                    <select class="form-input" id="patInsulation">
+                        <option value="">Select</option>
+                        <option value="Pass">Pass</option>
+                        <option value="Fail">Fail</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('patModal')">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Record Test
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Application State
+        const APP_STATE = {
+            currentSection: 'dashboard',
+            equipment: [],
+            maintenance: [],
+            patTesting: [],
+            alerts: [],
+            sheetsUrl: 'https://docs.google.com/spreadsheets/d/1LdjdPqRvjbPyulxqBimsh9QELIVm_S5mgkY6l-XIgfg/edit',
+            settings: {
+                maintenanceWarning: 30,
+                patWarning: 30,
+                emailRecipients: 'bqc@fantasticservices.com, antonia.harbalieva@fantasticservices.com'
+            }
+        };
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            loadInitialData();
+        });
+
+        function initializeApp() {
+            const savedSettings = localStorage.getItem('equipmentSettings');
+            if (savedSettings) {
+                APP_STATE.settings = { ...APP_STATE.settings, ...JSON.parse(savedSettings) };
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('maintenanceDate').value = today;
+            document.getElementById('patDate').value = today;
+        }
+
+        function setupEventListeners() {
+            // Navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    switchSection(section);
+                });
+            });
+
+            // Mobile toggle
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('active');
+            });
+
+            // Form submissions
+            document.getElementById('addEquipmentForm').addEventListener('submit', handleAddEquipment);
+            document.getElementById('maintenanceForm').addEventListener('submit', handleLogMaintenance);
+            document.getElementById('patForm').addEventListener('submit', handlePATTest);
+            document.getElementById('settingsForm').addEventListener('submit', handleSaveSettings);
+
+            // Close modals when clicking outside
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                    e.preventDefault();
+                    refreshData();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    e.preventDefault();
+                    syncWithSheets();
+                }
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal.active').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                }
+            });
+        }
+
+        function switchSection(sectionName) {
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionName).classList.add('active');
+
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'equipment': 'Equipment Inventory',
+                'maintenance': 'Maintenance Log',
+                'pat-testing': 'PAT Testing',
+                'alerts': 'Alerts',
+                'reports': 'Reports',
+                'settings': 'Settings'
+            };
+            document.getElementById('pageTitle').textContent = titles[sectionName];
+            APP_STATE.currentSection = sectionName;
+
+            loadSectionData(sectionName);
+        }
+
+        async function loadInitialData() {
+            showToast('Loading data...', 'info');
+            
+            try {
+                await Promise.all([
+                    loadEquipmentData(),
+                    loadMaintenanceData(),
+                    loadPATData(),
+                    loadAlertsData()
+                ]);
+
+                updateDashboard();
+                showToast('Data loaded successfully', 'success');
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showToast('Error loading data. Please check your connection.', 'error');
+            }
+        }
+
+        async function loadEquipmentData() {
+            const sampleEquipment = [
+                {
+                    itemId: 'EQ001',
+                    name: 'Dyson V15 Vacuum',
+                    category: 'Vacuum Cleaners',
+                    brand: 'Dyson V15 Detect',
+                    serial: 'DV15001',
+                    purchaseDate: '2023-01-15',
+                    cost: 450,
+                    condition: 'Good',
+                    assignedTo: 'John Smith',
+                    warranty: '2024-01-15',
+                    supplier: 'Dyson Support'
+                },
+                {
+                    itemId: 'EQ002',
+                    name: 'Carpet Cleaner Pro',
+                    category: 'Carpet Cleaners',
+                    brand: 'Bissell ProHeat 2X',
+                    serial: 'BH2X002',
+                    purchaseDate: '2023-03-20',
+                    cost: 299,
+                    condition: 'Fair',
+                    assignedTo: 'Jane Doe',
+                    warranty: '2024-03-20',
+                    supplier: 'Bissell Service'
+                },
+                {
+                    itemId: 'EQ003',
+                    name: 'Pressure Washer',
+                    category: 'Pressure Washers',
+                    brand: 'Karcher K5 Premium',
+                    serial: 'KK5003',
+                    purchaseDate: '2023-06-10',
+                    cost: 280,
+                    condition: 'Excellent',
+                    assignedTo: 'Mike Johnson',
+                    warranty: '2024-06-10',
+                    supplier: 'Karcher UK'
+                },
+                {
+                    itemId: 'EQ004',
+                    name: 'Floor Polisher',
+                    category: 'Floor Polishers',
+                    brand: 'Numatic HFT1530',
+                    serial: 'NH1004',
+                    purchaseDate: '2023-02-28',
+                    cost: 380,
+                    condition: 'Poor',
+                    assignedTo: 'Sarah Wilson',
+                    warranty: '2024-02-28',
+                    supplier: 'Numatic Support'
+                },
+                {
+                    itemId: 'EQ005',
+                    name: 'Window Cleaning Kit',
+                    category: 'Window Cleaning',
+                    brand: 'Unger Professional',
+                    serial: 'UP005',
+                    purchaseDate: '2023-05-12',
+                    cost: 150,
+                    condition: 'Good',
+                    assignedTo: 'Tom Brown',
+                    warranty: '2024-05-12',
+                    supplier: 'Unger UK'
+                }
+            ];
+
+            APP_STATE.equipment = sampleEquipment;
+            updateEquipmentDropdowns();
+        }
+
+        async function loadMaintenanceData() {
+            const sampleMaintenance = [
+                {
+                    id: 'MNT001',
+                    itemId: 'EQ001',
+                    lastService: '2023-07-15',
+                    nextDue: '2024-01-15',
+                    type: 'Routine Maintenance',
+                    provider: 'Dyson Service Center',
+                    cost: 45,
+                    description: 'Filter replacement and motor service'
+                },
+                {
+                    id: 'MNT002',
+                    itemId: 'EQ002',
+                    lastService: '2023-09-20',
+                    nextDue: '2024-03-20',
+                    type: 'Emergency Repair',
+                    provider: 'Local Repair Shop',
+                    cost: 120,
+                    description: 'Pump replacement due to failure'
+                },
+                {
+                    id: 'MNT003',
+                    itemId: 'EQ004',
+                    lastService: '2023-11-28',
+                    nextDue: '2024-05-28',
+                    type: 'Routine Maintenance',
+                    provider: 'Numatic Service',
+                    cost: 85,
+                    description: 'Motor brush replacement'
+                }
+            ];
+
+            APP_STATE.maintenance = sampleMaintenance;
+        }
+
+        async function loadPATData() {
+            const samplePAT = [
+                {
+                    id: 'PAT001',
+                    itemId: 'EQ001',
+                    lastTest: '2023-06-15',
+                    nextDue: '2024-06-15',
+                    result: 'Pass',
+                    tester: 'John Electrician',
+                    certificate: 'CERT-2023-001'
+                },
+                {
+                    id: 'PAT002',
+                    itemId: 'EQ002',
+                    lastTest: '2023-05-20',
+                    nextDue: '2024-05-20',
+                    result: 'Pass',
+                    tester: 'Jane Tester',
+                    certificate: 'CERT-2023-002'
+                },
+                {
+                    id: 'PAT003',
+                    itemId: 'EQ004',
+                    lastTest: '2023-03-28',
+                    nextDue: '2024-03-28',
+                    result: 'Fail',
+                    tester: 'Sarah Tester',
+                    certificate: 'CERT-2023-004'
+                }
+            ];
+
+            APP_STATE.patTesting = samplePAT;
+        }
+
+        async function loadAlertsData() {
+            const alerts = [];
+            const today = new Date();
+            const warningDate = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000));
+
+            // Check maintenance due
+            APP_STATE.maintenance.forEach(maintenance => {
+                const dueDate = new Date(maintenance.nextDue);
+                if (dueDate <= warningDate) {
+                    const equipment = APP_STATE.equipment.find(eq => eq.itemId === maintenance.itemId);
+                    alerts.push({
+                        type: 'maintenance',
+                        severity: dueDate < today ? 'danger' : 'warning',
+                        title: 'Maintenance Due',
+                        message: `${equipment?.name || maintenance.itemId} - Due: ${formatDate(dueDate)}`,
+                        itemId: maintenance.itemId,
+                        dueDate: dueDate
+                    });<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Management System - Fantastic Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-solid: #667eea;
+            --secondary: #10b981;
+            --success: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --glass: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-solid);
+            box-shadow: var(--shadow);
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            padding: 1.5rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left-color: white;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item i {
+            width: 20px;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 100vh;
+        }
+
+        .main-content.expanded {
+            margin-left: 0;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-toggle:hover {
+            background: var(--gray-100);
+            color: var(--dark);
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--primary-solid) 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-solid) 0%, #764ba2 100%);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--success) 100%);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--gray-600);
+            border: 1px solid var(--gray-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-outline:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-solid);
+            color: var(--primary-solid);
+            transform: translateY(-1px);
+        }
+
+        /* Content */
+        .content {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            min-height: calc(100vh - 100px);
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background: var(--primary);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .stat-icon.secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--success) 100%);
+        }
+
+        .stat-icon.warning {
+            background: linear-gradient(135deg, var(--warning) 0%, #f97316 100%);
+        }
+
+        .stat-icon.danger {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Tables */
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th {
+            background: var(--gray-50);
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--gray-800);
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            vertical-align: middle;
+        }
+
+        .table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .table tbody tr:hover {
+            background: linear-gradient(135deg, var(--gray-50) 0%, rgba(102, 126, 234, 0.05) 100%);
+            transform: scale(1.01);
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            gap: 0.5rem;
+        }
+
+        .badge.excellent {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #166534;
+        }
+
+        .badge.good {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+        }
+
+        .badge.fair {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            color: #92400e;
+        }
+
+        .badge.poor {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+
+        .badge.pass {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            color: #166534;
+        }
+
+        .badge.fail {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, rgba(220, 252, 231, 0.9) 0%, rgba(187, 247, 208, 0.9) 100%);
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(254, 243, 199, 0.9) 0%, rgba(253, 230, 138, 0.9) 100%);
+            color: #92400e;
+            border-color: #fde68a;
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(254, 226, 226, 0.9) 0%, rgba(252, 165, 165, 0.9) 100%);
+            color: #991b1b;
+            border-color: #fecaca;
+        }
+
+        .alert i {
+            font-size: 1.25rem;
+        }
+
+        /* Forms */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.875rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: white;
+            color: var(--dark);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-solid);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes modalIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-600);
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--gray-100);
+            color: var(--dark);
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--gray-200);
+            border-top: 3px solid var(--primary-solid);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            min-width: 300px;
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            color: white;
+            font-weight: 500;
+            z-index: 3000;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--success) 100%);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+        }
+
+        .toast.info {
+            background: var(--primary);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .header {
+                padding: 1rem 1.5rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.8rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .card {
+                background: rgba(30, 41, 59, 0.95);
+                color: white;
+            }
+
+            .table th {
+                background: rgba(51, 65, 85, 0.8);
+                color: #e2e8f0;
+            }
+
+            .table td {
+                color: #cbd5e1;
+            }
+
+            .form-input, .form-select {
+                background: rgba(51, 65, 85, 0.8);
+                border-color: rgba(71, 85, 105, 0.8);
+                color: white;
+            }
+
+            .modal-content {
+                background: var(--dark);
+                color: white;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Equipment Manager</h1>
+                        <p>Fantastic Services</p>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    Dashboard
+                </button>
+                <button class="nav-item" data-section="equipment">
+                    <i class="fas fa-wrench"></i>
+                    Equipment
+                </button>
+                <button class="nav-item" data-section="maintenance">
+                    <i class="fas fa-cogs"></i>
+                    Maintenance
+                </button>
+                <button class="nav-item" data-section="pat-testing">
+                    <i class="fas fa-bolt"></i>
+                    PAT Testing
+                </button>
+                <button class="nav-item" data-section="alerts">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Alerts
+                </button>
+                <button class="nav-item" data-section="reports">
+                    <i class="fas fa-file-chart-line"></i>
+                    Reports
+                </button>
+                <button class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="refreshData()">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                    <button class="btn btn-primary" onclick="syncWithSheets()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Sync Sheets
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Dashboard Section -->
+                <section class="content-section active" id="dashboard">
+                    <div class="dashboard-grid">
+                        <div class="card stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="stat-value" id="totalEquipment">0</div>
+                            <div class="stat-label">Total Equipment</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="stat-value" id="maintenanceDue">0</div>
+                            <div class="stat-label">Maintenance Due</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon danger">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="stat-value" id="patDue">0</div>
+                            <div class="stat-label">PAT Tests Due</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-icon secondary">
+                                <i class="fas fa-pound-sign"></i>
+                            </div>
+                            <div class="stat-value" id="totalValue">£0</div>
+                            <div class="stat-label">Total Equipment Value</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Alerts -->
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h2 class="table-title">
+                                <i class="fas fa-bell"></i>
+                                Recent Alerts
+                            </h2>
+                            <button class="btn btn-outline" onclick="viewAllAlerts()">
+                                <i class="fas fa-eye"></i>
+                                View All
+                            </button>
+                        </div>
+                        <div id="recentAlerts" class="loading">
+                            <div class="spinner"></div>
+                            Loading alerts...
+                        </div>
+                    
